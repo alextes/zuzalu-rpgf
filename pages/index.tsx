@@ -1,6 +1,5 @@
 import Image, { StaticImageData } from "next/image";
 import { Inter } from "next/font/google";
-import { useEffect, useMemo } from "react";
 import zuzaluCerts from "../zuzalu_certs.json";
 import zuzaluLogo from "../zuzalulogo.webp";
 
@@ -12,7 +11,7 @@ type Cert = {
   image: string;
   hypercert: {
     work_scope: { value: string[] };
-    work_timeframe: { value: [number, number] };
+    work_timeframe: { value: number[] };
     contributors: {
       value: string[];
     };
@@ -38,7 +37,12 @@ export default function Home() {
 
       <div className="flex flex-wrap gap-y-12">
         {(zuzaluCerts as Cert[]).map((cert) => (
-          <img className="w-1/3" src={cert.image} alt="" />
+          <Image
+            key={cert.description}
+            className="w-1/3"
+            src={cert.image}
+            alt=""
+          />
         ))}
       </div>
     </main>
