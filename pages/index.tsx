@@ -37,9 +37,8 @@ export default function Home() {
 
       <div className="flex flex-col gap-y-12">
         {(zuzaluCerts as Cert[]).map((cert) => (
-          <div className="flex">
+          <div className="flex" key={cert.description}>
             <Image
-              key={cert.description}
               className="w-1/3"
               src={cert.image}
               alt=""
@@ -59,7 +58,7 @@ export default function Home() {
                 </span>
                 <ul className="list-disc list-inside">
                   {cert.hypercert.contributors.value.map((contributor) => (
-                    <li>{contributor}</li>
+                    <li key={contributor}>{contributor}</li>
                   ))}
                 </ul>
               </div>
