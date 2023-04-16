@@ -3,6 +3,10 @@ import { Inter } from "next/font/google";
 import zuzaluCerts from "../zuzalu_certs.json";
 import zuzaluLogo from "../zuzalulogo.webp";
 
+const decodedZuzaluCerts = (zuzaluCerts as string[]).map((cert: string) =>
+  JSON.parse(cert)
+);
+
 const inter = Inter({ subsets: ["latin"] });
 
 type Cert = {
@@ -20,7 +24,7 @@ type Cert = {
 
 export default function Home() {
   return (
-    <main className="flex flex-col justify-between items-center p-24 min-h-screen">
+    <main className="flex flex-col justify-between items-center p-24 min-h-screen bg-gray-900">
       <div className="z-10 justify-between items-center w-full max-w-5xl font-mono text-sm lg:flex">
         <div className="flex justify-center w-full">
           <Image
@@ -36,7 +40,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-y-12">
-        {(zuzaluCerts as Cert[]).map((cert) => (
+        {(decodedZuzaluCerts as Cert[]).map((cert) => (
           <div className="flex" key={cert.description}>
             <Image
               className="w-1/3"
